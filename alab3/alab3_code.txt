@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <math.h>
+
+int fact(int num);
+double sum(double num);
+double el(double val, int n);
+
+
+double epsilon(double n);
+
+int k = 10;
+
+int main(void) {
+    double a = 0.1, b = 1, x = 0.1, step;
+    int n = 1;
+   
+    
+    step = (b - a) / k;
+    
+    for(x = 0.1; x < 1; x += step) {
+        printf("step: %d| x: %lf| 3^x: %lf| sum: %lf| epsilon : %lf|\n ", n, x, pow(3, x), sum(x), epsilon(x));
+        n++;
+    }
+    
+   
+}
+
+int fact(int n) {
+    int res = 1;
+    
+    for(int i = 1; i <= n; i++ ) {
+    
+        res = res * i;
+    }    
+   return res;
+}
+
+double sum(double n) {
+    double sum = 1;
+    for(int i = 1; i < 11; i++) {
+        sum = sum + el(n, i);       
+    }
+    return sum;
+}
+
+double epsilon(double n) {
+    double sum = 1;
+    int i;
+    i = 1;
+    do {
+        sum = sum + el(n,i);
+        i++;
+    } while(el(n, i) > 0.0001);
+    return sum;
+}
+
+double el(double val, int n) {
+    double res = 1;
+    res = (pow(log(3),n)/fact(n)*pow(val,n));
+    return res;
+}
