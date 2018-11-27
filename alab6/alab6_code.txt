@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main(void)
+{
+	int count = 0;
+	printf("Enter your string: ");
+	char s[55];
+	gets(s);
+
+	int b = 0;
+	int e = strlen(s) - 1;
+
+	while(e > b)
+	{
+		if(s[b++] != s[e--])
+		{
+			if(isspace(s[b]))
+			{
+				b++;
+				e--;
+			}
+			if(isspace(s[e]))
+			{
+				e++;
+				b--;
+			}
+			if(isspace(s[b]) || isspace(s[e]))
+			{
+				continue;
+			}
+			printf("The string is not a palindrome\n");
+			printf("Type any key to exit the program\n");
+			scanf("%d");	
+    		return 0;
+		}
+	}
+	printf("The string is a palindrome\n");
+
+	printf("Type any key to exit the program\n");
+	scanf("%d");
+}
